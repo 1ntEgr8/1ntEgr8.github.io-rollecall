@@ -6,7 +6,7 @@ import Confirm from "./components/Confirm";
 import Rollecall from "./components/Rollecall";
 import Yay from "./components/Yay";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 
 function App() {
