@@ -1,22 +1,46 @@
-.App {
+@import url('https://rsms.me/inter/inter.css');
+
+body {
+  font-family: Inter, 'serif';
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffeded;
+}
+
+#root {
+  width: 75%;
+}
+
+.header {
+  font-weight: bold; 
+  font-size: 3rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.container {
+  display: flex;
+  justify-content: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.list-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+.MuiPaper-root {
+  width: 50%;
+  margin: 10px !important;
+}
+
+.MuiButtonBase-root {
+  margin: 10px !important;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
 }
