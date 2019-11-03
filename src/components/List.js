@@ -25,7 +25,8 @@ class List extends React.Component {
     return (
       <div>
         <Header />
-        <div className="list-container">{listItems}</div>
+        <div style={{textAlign: "center"}}>Count: {listItems.length}</div>
+        <div className="cards-container">{listItems}</div>
         <div className="container">
           {listItems.length === 0 ? (
             <div className="list-container">

@@ -1,7 +1,7 @@
 import React from "react";
 import ListItem from "./ListItem";
 import { Button } from "@material-ui/core";
-import {withRouter} from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 class Rollecall extends React.Component {
   constructor(props) {
@@ -15,40 +15,70 @@ class Rollecall extends React.Component {
         const number = window.localStorage.getItem(key);
         elements.push({
           name,
-          number
+          number,
+          there: true
         });
       }
     }
-    this.state = {
-      elements: elements,
-      counter: 0,
-      currentName: elements[0]["name"],
-      currentNumber: elements[0]["number"]
+    if (elements.length !== 0) {
+      this.state = {
+        elements: elements,
+        currentName: elements[0]["name"],
+        currentNumber: elements[0]["number"],
+        there: elements[0].there
+      };
     }
     this.onClick = this.onClick.bind(this);
+    this.onClickBad = this.onClickBad.bind(this);
   }
 
   onClick() {
-    if ((this.state.counter + 1) < this.state.elements.length) {
+    if (this.state.elements.length > 1) {
       console.log(this.state);
-      const newName = this.state.elements[this.state.counter+1]["name"];
-      const newNumber = this.state.elements[this.state.counter+1]["number"]
+      this.state.elements.shift();
+      const newName = this.state.elements[0]["name"];
+      const newNumber = this.state.elements[0]["number"];
       this.setState({
-        counter: this.state.counter +1,
         currentName: newName,
-        currentNumber: newNumber
+        currentNumber: newNumber,
+        there: this.state.elements[0].there
       });
     } else {
       this.props.history.push("/yay");
     }
   }
+
+  onClickBad() {
+    const notThere = this.state.elements.shift();
+    notThere.there = false;
+    this.state.elements.push(notThere);
+    const newName = this.state.elements[0]["name"];
+    const newNumber = this.state.elements[0]["number"];
+    this.setState({
+      currentName: newName,
+      currentNumber: newNumber,
+      there: this.state.elements[0].there
+    });
+  }
+
   render() {
     return (
-      <div class="container">
-        <ListItem name={this.state.currentName} number={this.state.currentNumber} />
-        <Button variant="outlined" onClick={this.onClick}><span>✅</span></Button>
+      <div className="list-container">
+        <ListItem
+          name={this.state.currentName}
+          number={this.state.currentNumber}
+          there={this.state.there}
+        />
+        <div className="btns">
+          <Button variant="outlined" onClick={this.onClick}>
+            <span>✅</span>
+          </Button>
+          <Button variant="outlined" onClick={this.onClickBad}>
+            <span>❌</span>
+          </Button>
+        </div>
       </div>
-    )
+    );
   }
 }
 

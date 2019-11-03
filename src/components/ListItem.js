@@ -7,7 +7,7 @@ function ListItem(props) {
     return (
         <Card>
             <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h5" color={props.there ? "primary" : "error"} component="h2">
             {props.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
